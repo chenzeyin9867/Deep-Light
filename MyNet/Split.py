@@ -2,8 +2,8 @@ import os
 import time
 import numpy as np
 from IPython.display import clear_output
-sourceDir="./40000data/skybox/"
-sourceMaskDir = "./SkyBoxAddMask40000"
+sourceDir="/media/czy/DataDisk/czy/NewBlue2019.12.27/Skybox"
+sourceMaskDir = "/media/czy/DataDisk/czy/NewBlue2019.12.27/Syn"
 #trainDir validationDir testDir
 targetDir=["./traindir32000",
            "./validatedir4000",
@@ -18,8 +18,8 @@ fileNum=len(fileList1)
 fileList1.sort()
 fileList2.sort()
 
-x=int(8./10*fileNum)
-y=int(1./10*fileNum)
+x=int(0.75/1.0*fileNum)
+y=int(0.15/1.0*fileNum)
 z=fileNum-x-y
 targetFileNum=[x,x+y,x+y+z]
 print(x,y,z)
