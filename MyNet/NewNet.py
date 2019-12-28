@@ -45,8 +45,8 @@ batch_size = 64
 
 
 
-testMaskDir='/home/czy/NewDataSet/testdirMask4000'
-testDir = '/home/czy/NewDataSet/testdir4000'
+testMaskDir='/home/czy/DataSet/bluerpic20191227/testdirMask4000'
+testDir = '/home/czy/DataSet/bluerpic20191227/testdir4000'
 #
 MaskPath = glob.glob(testMaskDir+'/*.png')
 MaskPath.sort()
@@ -54,8 +54,12 @@ MaskPath.sort()
 Path = glob.glob(testDir+'/*.png')
 Path.sort()
 import random
-genTestMask = MaskPath[:100]
-genSkybox = Path[:100]
+a = list(range(10000))
+b = random.sample(a,100)
+genTestMask = [MaskPath[i] for i in b]
+genSkybox = [Path[i] for i in b]
+
+
 
 
 testMaskDataset=tf.data.Dataset.from_tensor_slices(MaskPath)
@@ -72,8 +76,8 @@ print("testDataNum: ",testDataNum)
 
 
 # trainImagePath=PATH+"train_input"
-trainImagePath = '/home/czy/NewDataSet/trainMaskdir32000'
-targetImagePath = "/home/czy/NewDataSet/traindir32000"
+trainImagePath = '/home/czy/DataSet/bluerpic20191227/trainMaskdir32000'
+targetImagePath = "/home/czy/DataSet/bluerpic20191227/traindir32000"
 MaskPath = glob.glob(trainImagePath+'/*.png')
 MaskPath.sort()
 
@@ -99,8 +103,8 @@ print("trainDataNum: ", trainDataNum)
 
 
 
-validationMask='/home/czy/NewDataSet/validateMaskdir4000'
-validationDir = '/home/czy/NewDataSet/validatedir4000'
+validationMask='/home/czy/DataSet/bluerpic20191227/validateMaskdir4000'
+validationDir = '/home/czy/DataSet/bluerpic20191227/validatedir4000'
 #
 MaskPath = glob.glob(testMaskDir+'/*.png')
 MaskPath.sort()
@@ -343,7 +347,7 @@ checkpoint = tf.train.Checkpoint(encoder_optimizer=encoder_optimizer,
                                  decoder=decoder
                                  )
 checkpoint.restore(tf.train.latest_checkpoint('./checkpoint'))
-
+print("The Latest ckpt:{}".format(tf.train.latest_checkpoint('./checkpoint')))
 # In[32]:
 
 
